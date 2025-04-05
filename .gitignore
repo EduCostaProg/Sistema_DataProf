@@ -1,0 +1,27 @@
+# Arquivos Python compilados
+*.py[cod]
+__pycache__/
+
+# Arquivos de log
+*.log
+
+# Banco de dados SQLite (caso utilizado)
+db.sqlite3
+
+# Arquivos de configuração local do Django
+local_settings.py
+
+# Diretórios de ambiente virtual
+env/
+venv/
+
+# Distribuição / packaging
+*.egg-info/
+dist/
+build/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
