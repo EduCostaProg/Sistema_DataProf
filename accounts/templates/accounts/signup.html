@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro - DataProf{% endblock %}
+
+{% block content %}
+  <h2>Cadastre-se</h2>
+
+  {% if form.errors %}
+    <div class="error">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li>{{ field.label }}: {{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Cadastrar</button>
+  </form>
+{% endblock %}

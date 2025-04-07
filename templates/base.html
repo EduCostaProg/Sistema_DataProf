@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}DataProf{% endblock %}</title>
+  <!-- Importando a fonte Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Paleta de Cores */
+    :root {
+      --primaria: #C3A6A9;          /* Rosa Claro Elegante */
+      --secundaria: #B8B1D5;        /* Lilás Nevoado */
+      --fundo-claro: #F6F3F2;       /* Areia Neutra */
+      --fundo-escuro: #4F3B3D;      /* Grafite Rosado */
+      --texto-principal: #2C2C2C;   /* Cinza Escuro Elegante */
+      --destaque: #A8CBB7;          /* Verde Suave Educativo */
+    }
+
+    /* Estilo Geral */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--fundo-claro);
+      color: var(--texto-principal);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primaria);
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
+      color: var(--fundo-claro);
+      font-weight: 600;
+    }
+
+    header nav ul li a:hover {
+      color: var(--destaque);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    /* Card de conteúdo */
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--destaque);
+      color: var(--fundo-claro);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--secundaria);
+    }
+
+    footer {
+      background-color: var(--fundo-escuro);
+      color: var(--fundo-claro);
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Sair</a></li>
+          <li><a href="{% url 'profile' %}">Perfil</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    {% block content %}
+      <!-- Conteúdo específico da página -->
+    {% endblock %}
+  </div>
+
+  <footer>
+    <p>&copy; 2025 DataProf. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
