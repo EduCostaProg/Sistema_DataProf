@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home - DataProf{% endblock %}
+
+{% block content %}
+  <h1>Bem-vindo ao DataProf</h1>
+  <p>Organize suas turmas e gerencie os dados dos alunos de forma simples e elegante.</p>
+  {% if not user.is_authenticated %}
+    <p>
+      <a href="{% url 'login' %}" class="btn">Faça Login</a>
+      ou <a href="{% url 'signup' %}" class="btn">Cadastre-se</a>
+    </p>
+  {% else %}
+    <p>Você está logado. Acesse seu painel de controle para gerenciar as turmas.</p>
+  {% endif %}
+{% endblock %}

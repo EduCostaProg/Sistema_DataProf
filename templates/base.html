@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DataProf - Educação</title>
-  <!-- Importando a fonte Poppins do Google Fonts -->
+  <title>{% block title %}DataProf{% endblock %}</title>
+  <!-- Importando a fonte Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -34,10 +34,23 @@
       text-align: center;
     }
 
-    header h1 {
+    header nav ul {
+      list-style: none;
       margin: 0;
-      font-size: 2rem;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
       color: var(--fundo-claro);
+      font-weight: 600;
+    }
+
+    header nav ul li a:hover {
+      color: var(--destaque);
     }
 
     .container {
@@ -55,10 +68,6 @@
       margin-bottom: 20px;
     }
 
-    .card h2 {
-      color: var(--secundaria);
-    }
-
     .btn {
       display: inline-block;
       padding: 10px 20px;
@@ -67,7 +76,6 @@
       text-decoration: none;
       border-radius: 4px;
       transition: background-color 0.3s;
-      margin-top: 10px;
     }
 
     .btn:hover {
@@ -80,38 +88,26 @@
       text-align: center;
       padding: 10px;
     }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      .card {
-        padding: 15px;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <h1>DataProf</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Sair</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
   </header>
 
   <div class="container">
-    <section class="card">
-      <h2>Bem-vindo ao DataProf</h2>
-      <p>Uma plataforma elegante e intuitiva para professores organizarem suas turmas e gerenciarem os dados dos alunos com facilidade.</p>
-      <a href="#" class="btn">Saiba Mais</a>
-    </section>
-
-    <section class="card">
-      <h2>Funcionalidades</h2>
-      <ul>
-        <li>Gestão de Alunos</li>
-        <li>Organização de Turmas</li>
-        <li>Interface Responsiva</li>
-      </ul>
-    </section>
+    {% block content %}
+      <!-- Conteúdo específico da página -->
+    {% endblock %}
   </div>
 
   <footer>
