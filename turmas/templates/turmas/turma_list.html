@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Turmas - DataProf{% endblock %}
+
+{% block content %}
+  <h2>Lista de Turmas</h2>
+  <ul>
+    {% for turma in turmas %}
+      <li>
+        <a href="{% url 'turma-detail' turma.pk %}">{{ turma.nome }}</a>
+      </li>
+    {% empty %}
+      <li>Nenhuma turma cadastrada ainda.</li>
+    {% endfor %}
+  </ul>
+  <!-- Botão para adicionar uma nova turma, se necessário -->
+  <a href="{% url 'turma-add' %}" class="btn">Adicionar Turma</a>
+{% endblock %}

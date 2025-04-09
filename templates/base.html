@@ -41,15 +41,22 @@
       display: flex;
       justify-content: center;
       gap: 20px;
+      align-items: center;
     }
 
-    header nav ul li a {
+    header nav ul li a,
+    header nav ul li form button {
       text-decoration: none;
       color: var(--fundo-claro);
       font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
     }
 
-    header nav ul li a:hover {
+    header nav ul li a:hover,
+    header nav ul li form button:hover {
       color: var(--destaque);
     }
 
@@ -96,7 +103,14 @@
       <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">Sair</a></li>
+          <li>
+            <!-- Formulário de logout via POST -->
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <!-- O botão é estilizado para parecer um link -->
+              <button type="submit">Sair</button>
+            </form>
+          </li>
           <li><a href="{% url 'profile' %}">Perfil</a></li>
         {% else %}
           <li><a href="{% url 'login' %}">Login</a></li>

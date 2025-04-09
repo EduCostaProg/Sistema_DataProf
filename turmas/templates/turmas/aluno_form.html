@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if object %}Editar Aluno{% else %}Adicionar Aluno{% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>{% if object %}Editar Aluno{% else %}Adicionar Aluno{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">{% if object %}Atualizar{% else %}Criar{% endif %}</button>
+  </form>
+  <!-- Link "Cancelar" direciona para a página de detalhes da turma -->
+  <a href="{% url 'turma-detail' turma.pk %}" class="btn">Cancelar</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ turma.nome }} - Detalhes{% endblock %}
+
+{% block content %}
+  <h2>{{ turma.nome }}</h2>
+  <p>{{ turma.descricao }}</p>
+
+  <h3>Alunos da Turma</h3>
+  <ul>
+    {% for aluno in turma.alunos.all %}
+      <li>
+        {{ aluno.nome }} - {{ aluno.email }}
+        <a href="{% url 'aluno-edit' aluno.pk %}" class="btn">Editar</a>
+      </li>
+    {% empty %}
+      <li>Nenhum aluno cadastrado nesta turma.</li>
+    {% endfor %}
+  </ul>
+  
+  <a href="{% url 'aluno-add' turma.pk %}" class="btn">Adicionar Aluno</a>
+  <a href="{% url 'turma-list' %}" class="btn">Voltar para Turmas</a>
+{% endblock %}
